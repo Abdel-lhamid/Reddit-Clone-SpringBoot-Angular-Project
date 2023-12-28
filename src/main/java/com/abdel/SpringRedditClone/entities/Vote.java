@@ -1,11 +1,11 @@
 package com.abdel.SpringRedditClone.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Instant;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -14,14 +14,17 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "token")
-public class VerificationToken {
-
+@Builder
+public class Vote {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-    private String token;
-    @OneToOne(fetch = LAZY)
+    private Long voteId;
+    private VoteType voteType;
+    @NotNull
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "postId", referencedColumnName = "postId")
+    private Post post;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
-    private Instant expiryDate;
 }
