@@ -6,7 +6,8 @@ import lombok.*;
 import java.time.Instant;
 
 
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @AllArgsConstructor
@@ -26,5 +27,5 @@ public class Post {
     private Instant createdDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")
-    private SubReddit subReddit;
+    private Subreddit subreddit;
 }

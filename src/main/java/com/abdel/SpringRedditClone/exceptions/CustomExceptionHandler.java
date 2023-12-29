@@ -17,4 +17,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
+    @ExceptionHandler(value = { PostNotFoundException.class })
+    protected ResponseEntity<Object> handleConflict(PostNotFoundException ex, WebRequest request) {
+        String bodyOfResponse = ex.getMessage();
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+    @ExceptionHandler(value = { SubredditNotFoundException.class })
+    protected ResponseEntity<Object> handleConflict(SubredditNotFoundException ex, WebRequest request) {
+        String bodyOfResponse = ex.getMessage();
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
 }

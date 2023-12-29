@@ -17,7 +17,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
-public class SubReddit {
+public class Subreddit {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
